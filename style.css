@@ -1,0 +1,294 @@
+:root {
+    --bg: #030303;
+    --blood: #9e0b0f;
+    --blood-bright: #ff1e27;
+    --bone: #b8b2a6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--blood);
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crt-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.92) 100%),
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 100;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem;
+}
+
+/* --- ABISMO (index.html) --- */
+#void-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.ghost-glyph {
+    position: relative;
+    z-index: 10;
+    font-size: 2.6rem;
+    color: var(--blood-bright);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+/* --- TRANSMISIÓN (transmision.html) --- */
+.ritual-circle {
+    width: 145px;
+    height: 145px;
+    border: 1px solid var(--blood);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+.ritual-circle.playing {
+    animation: pulse 4s infinite ease-in-out;
+    border-color: var(--blood-bright);
+}
+
+.inner-eye {
+    font-size: 2.1rem;
+    color: var(--blood-bright);
+}
+
+.cryptic-code {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.5rem;
+    opacity: 0.45;
+    z-index: 10;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 5px rgba(158, 11, 15, 0.2); }
+    50% { transform: scale(1.12); box-shadow: 0 0 30px rgba(255, 30, 39, 0.5); }
+}
+
+/* --- BIBLIOTECA (biblioteca.html) --- */
+.sigil-header {
+    position: absolute;
+    top: 2rem;
+    letter-spacing: 0.8rem;
+    font-size: 0.9rem;
+    opacity: 0.65;
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 240px));
+    gap: 2.5rem;
+    z-index: 10;
+}
+
+.node {
+    background: transparent;
+    border: 1px solid rgba(158, 11, 15, 0.35);
+    color: var(--bone);
+    padding: 1.5rem 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+    cursor: crosshair;
+    transition: all 0.35s ease;
+}
+
+.node:hover {
+    border-color: var(--blood-bright);
+    color: var(--blood-bright);
+    box-shadow: 0 0 15px rgba(158, 11, 15, 0.4);
+    transform: scale(1.03);
+}
+
+.viewer {
+    position: fixed;
+    inset: 14%;
+    background: #070707;
+    border: 1px solid var(--blood);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    z-index: 50;
+    box-shadow: 0 0 50px #000;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--blood);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#viewer-content {
+    color: var(--bone);
+    letter-spacing: 0.2rem;
+    line-height: 2;
+    text-align: center;
+    max-width: 540px;
+}
+
+/* --- CUENTA ATRÁS (cuenta-atras.html) --- */
+.alignment-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.coords {
+    color: var(--bone);
+    font-size: 1.1rem;
+    letter-spacing: 0.35rem;
+}
+
+.divider {
+    color: var(--blood);
+    font-size: 1.4rem;
+    opacity: 0.75;
+}
+
+.timer {
+    color: var(--blood-bright);
+    font-size: 2.2rem;
+    letter-spacing: 0.4rem;
+    text-shadow: 0 0 10px rgba(255, 30, 39, 0.4);
+}
+
+/* --- FASE 4: MÓVIL / PC (umbral.html) --- */
+.pc-longform {
+    max-width: 680px;
+    color: var(--bone);
+    font-size: 0.92rem;
+    line-height: 1.9;
+    letter-spacing: 0.08rem;
+    text-align: left;
+    border-left: 1px solid var(--blood);
+    padding-left: 2rem;
+    z-index: 10;
+}
+
+.pc-longform p {
+    margin-bottom: 1.4rem;
+}
+
+.mobile-redirect-box {
+    text-align: center;
+    color: var(--bone);
+    letter-spacing: 0.2rem;
+    z-index: 10;
+}
+
+.mobile-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--blood-bright);
+    border: 1px solid var(--blood);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    letter-spacing: 0.25rem;
+}
+
+/* --- FASE 5: MENÚ GENERAL (archivo-abierto.html) --- */
+.master-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    width: 100%;
+    max-width: 420px;
+    z-index: 10;
+}
+
+.menu-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.5rem;
+    border: 1px solid rgba(158, 11, 15, 0.4);
+    color: var(--bone);
+    text-decoration: none;
+    letter-spacing: 0.22rem;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+}
+
+.menu-link:hover {
+    border-color: var(--blood-bright);
+    color: var(--blood-bright);
+    background: rgba(158, 11, 15, 0.08);
+}
+
+/* --- BARRA DE PRUEBAS / ROTACIÓN --- */
+.dev-bar {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 200;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    background: rgba(5, 5, 5, 0.9);
+    border: 1px solid rgba(158, 11, 15, 0.4);
+    padding: 6px 8px;
+    font-size: 0.7rem;
+}
+
+.dev-bar button {
+    background: #0c0c0c;
+    color: var(--bone);
+    border: 1px solid rgba(158, 11, 15, 0.5);
+    padding: 4px 8px;
+    font-family: inherit;
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.dev-bar button:hover,
+.dev-bar button.active {
+    border-color: var(--blood-bright);
+    color: var(--blood-bright);
+}
